@@ -1,4 +1,4 @@
 [apps]
-load_flow = ""
-frequency_sweep = ""
-harmonics = ""
+load_flow = "https://mpe-load-flow.streamlit.app/"
+frequency_sweep = "https://mpe-frequency-sweep.streamlit.app/"
+harmonics = "https://mpe-harmonics.streamlit.app/"

@@ -6,7 +6,7 @@ from streamlit.testing.v1 import AppTest
 APP_PATH = Path(__file__).resolve().parents[1] / "app.py"
 
 
-def test_landing_page_shows_three_tools_and_unconfigured_link_placeholders():
+def test_landing_page_shows_three_tools_with_deployed_links():
     app = AppTest.from_file(str(APP_PATH), default_timeout=30).run()
 
     assert not app.exception
@@ -19,4 +19,9 @@ def test_landing_page_shows_three_tools_and_unconfigured_link_placeholders():
     assert "Load Flow Dashboard" in visible_text
     assert "Frequency Sweep Analyser" in visible_text
     assert "Harmonic Analysis Dashboard" in visible_text
-    assert visible_text.count("Deployment URL will be added") == 3
+    buttons = app.get("link_button")
+    assert [button.url for button in buttons] == [
+        "https://mpe-load-flow.streamlit.app/",
+        "https://mpe-frequency-sweep.streamlit.app/",
+        "https://mpe-harmonics.streamlit.app/",
+    ]
