@@ -22,34 +22,38 @@ st.write("Engineering analysis tools from Moeller & Poeller Engineering.")
 
 tools = (
     (
-        "⚡",
+        ":material/bolt:",
         "Load Flow Dashboard",
         "Explore PowerFactory load-flow sweeps, plots and equipment limit checks.",
-        "Input: PowerFactory CSV results, optionally with a ZIP archive and mapping workbook.",
+        "PowerFactory CSV results, optionally with a ZIP archive and mapping workbook.",
         app_links.get("load_flow", ""),
     ),
     (
-        "📈",
+        ":material/show_chart:",
         "Frequency Sweep Analyser",
         "Compare frequency-dependent resistance, reactance and impedance curves.",
-        "Input: Excel frequency-sweep workbook with R1 and X1 sheets; R0 and X0 are optional.",
+        "Excel frequency-sweep workbook with R1 and X1 sheets; R0 and X0 are optional.",
         app_links.get("frequency_sweep", ""),
     ),
     (
-        "〰️",
+        ":material/graphic_eq:",
         "Harmonic Analysis Dashboard",
         "Review harmonic results and total harmonic distortion against selected limits.",
-        "Input: Excel results, optionally with Cases_description and Limits workbooks or a ZIP bundle.",
+        "Excel results, optionally with Cases_description and Limits workbooks or a ZIP bundle.",
         app_links.get("harmonics", ""),
     ),
 )
 
 columns = st.columns(3, gap="large")
 for column, (icon, name, description, expected_input, url) in zip(columns, tools):
-    with column.container(border=True):
+    with column.container(
+        border=True,
+        height="stretch",
+        vertical_alignment="distribute",
+    ):
         st.markdown(f"### {icon} {name}")
         st.write(description)
-        st.caption(expected_input)
+        st.markdown(f"**Input:** {expected_input}")
         if url:
             st.link_button("Open application", url, width="stretch")
         else:

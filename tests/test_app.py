@@ -19,6 +19,7 @@ def test_landing_page_shows_three_tools_with_deployed_links():
     assert "Load Flow Dashboard" in visible_text
     assert "Frequency Sweep Analyser" in visible_text
     assert "Harmonic Analysis Dashboard" in visible_text
+    assert sum("**Input:**" in element.value for element in app.markdown) == 3
     buttons = app.get("link_button")
     assert [button.url for button in buttons] == [
         "https://mpe-load-flow.streamlit.app/",
